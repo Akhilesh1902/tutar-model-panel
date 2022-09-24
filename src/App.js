@@ -1,7 +1,9 @@
+import LibraryPanel from './Components/LibraryPanel';
+
 function App() {
   return (
-    <div className='App'>
-      <h1>This is app</h1>
+    <div className='App flex w-screen'>
+      <LibraryPanel />
     </div>
   );
 }
