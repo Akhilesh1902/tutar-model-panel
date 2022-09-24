@@ -34,6 +34,7 @@ const RightSection = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   const handleThumbClick = (e) => {
