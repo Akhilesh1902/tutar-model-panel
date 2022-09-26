@@ -16,6 +16,7 @@ const RightSection = () => {
   };
 
   const fetchAllTheModels = async (json) => {
+    // return;
     await json.forEach(async (data) => {
       if (model[`models_${data.fileAddr.split('/')[1]}`]) {
         return;
@@ -58,21 +59,17 @@ const RightSection = () => {
   };
 
   return (
-    <div className='rightSection w-2/6'>
+    <div className='rightSection mb-4'>
       <h2 className='font-bold text-xl mb-5'>More Library Models</h2>
-      <div className='grid h-3/5 grid-cols-2 gap-2 overflow-y-scroll w-fit'>
+      <div className='flex md:grid h-3/5 grid-cols-2 gap-2 overflow-scroll w-full'>
         {data.map((item, i) => {
           return (
-            <div
-              key={i}
-              className={`image_container w-24 h-32 grid place-items-center bg-gray-400 rounded`}>
-              <img
-                className='object-contain'
-                src={`data:image/jpeg;base64,${item.thumb}`}
-                alt={item.name}
-                onClick={handleThumbClick}
-              />
-            </div>
+            <img
+              className='object-contain w-28 md:h-24 bg-gray-400 rounded bg-pink'
+              src={`data:image/jpeg;base64,${item.thumb}`}
+              alt={item.name}
+              onClick={handleThumbClick}
+            />
           );
         })}
       </div>
