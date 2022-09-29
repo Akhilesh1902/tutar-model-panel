@@ -65,7 +65,8 @@ const RightSection = () => {
         {data.map((item, i) => {
           return (
             <img
-              className='object-contain w-28 md:h-24 bg-gray-400 rounded bg-pink'
+              key={i}
+              className='object-contain w-28 md:h-24 bg-gray-400 rounded bg-lightGray'
               src={`data:image/jpeg;base64,${item.thumb}`}
               alt={item.name}
               onClick={handleThumbClick}
