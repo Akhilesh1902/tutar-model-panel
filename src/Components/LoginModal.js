@@ -25,7 +25,7 @@ const LoginModal = ({ setLoginModal, setUser }) => {
       alert('invalid User');
     } else {
       console.log(data);
-      setUser(data[0]);
+      setUser(data);
       setLoginModal(false);
     }
     // setLoginModal(false)

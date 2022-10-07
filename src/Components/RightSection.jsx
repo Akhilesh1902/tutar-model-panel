@@ -9,22 +9,25 @@ const RightSection = ({ user }) => {
 
   const [data, setData] = useState([]);
   const fetchData = async () => {
-    const filterdData = await fetch(`${SERVER_URL}/first`);
+    console.log(SERVER_URL);
+    const filterdData = await fetch(`${SERVER_URL}/model-metadata`);
     const json = await filterdData.json();
+    console.log(json);
     setData(json);
     fetchAllTheModels(json);
   };
 
   const fetchAllTheModels = async (json) => {
     await json.forEach(async (data) => {
-      if (model[`models_${data.fileAddr.split('/')[1]}`]) {
+      // console.log(data);
+      if (model[data.name]) {
         return;
       }
-      const result = await fetch(`${SERVER_URL}/${data.fileAddr}/embed`);
+      const result = await fetch(`${SERVER_URL}/models/${data.name}`);
       const json = await result.json();
-
+      // console.log(json);
       pushModel({
-        name: json.modelName.replace('/', '_'),
+        name: json.modelName,
         blob: json.model.data,
       });
     });
@@ -39,12 +42,12 @@ const RightSection = ({ user }) => {
     console.log('clicking');
     const name = e.target.alt || e.target.dataset.name;
     const m = data.find((item) => item.name === name);
-    if (!model[`models_${m.name}`]) {
+    if (!model[m.name]) {
       alert('wait till all models are loaded');
       return;
     }
     setCurrentModelData(m);
-    const arrBuff = new Uint8Array(model[`models_${m.name}`].blob);
+    const arrBuff = new Uint8Array(model[m.name].blob);
     const blob = new Blob([arrBuff]);
 
     if (!blob) {
