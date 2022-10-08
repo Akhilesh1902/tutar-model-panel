@@ -1,10 +1,13 @@
-import LibraryPanel from './Components/LibraryPanel';
+import { BrowserRouter } from 'react-router-dom';
+import Pages from './Pages';
 
 function App() {
   return (
-    <div className='App flex justify-center w-screen h-screen bg-lightGray relative'>
-      <LibraryPanel />
-    </div>
+    <BrowserRouter>
+      <div className='App flex justify-center w-screen h-screen bg-lightGray relative'>
+        <Pages />
+      </div>
+    </BrowserRouter>
   );
 }
 
