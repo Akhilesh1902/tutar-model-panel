@@ -9,10 +9,8 @@ const RightSection = ({ user }) => {
 
   const [data, setData] = useState([]);
   const fetchData = async () => {
-    console.log(SERVER_URL);
     const filterdData = await fetch(`${SERVER_URL}/model-metadata`);
     const json = await filterdData.json();
-    console.log(json);
     setData(json);
     fetchAllTheModels(json);
   };
@@ -39,14 +37,13 @@ const RightSection = ({ user }) => {
   }, []);
 
   const handleThumbClick = (e) => {
-    console.log('clicking');
     const name = e.target.alt || e.target.dataset.name;
     const m = data.find((item) => item.name === name);
+    setCurrentModelData(m);
     if (!model[m.name]) {
       alert('wait till all models are loaded');
       return;
     }
-    setCurrentModelData(m);
     const arrBuff = new Uint8Array(model[m.name].blob);
     const blob = new Blob([arrBuff]);
 

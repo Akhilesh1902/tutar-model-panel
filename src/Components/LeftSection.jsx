@@ -22,13 +22,40 @@ const LeftSection = () => {
         <CanvasWrapper />
       </div>
       {currentModelData.name && (
-        <div className='my-container-modelDetails flex items-end gap-4'>
-          <p className='capitalize font-bold text-xl'>
-            {currentModelData?.name?.split('.')[0]}
-          </p>
-          <button className='text-sm' onClick={handleDownLoadClick}>
-            download
-          </button>
+        <div className='my-container-modelDetails felx flex-col gap-4'>
+          <div className='flex gap-4 items-end border-b-2 w-1/2 mb-2'>
+            <p className='capitalize font-bold text-xl'>
+              {currentModelData?.DisplayName}
+            </p>
+            <button className='text-sm' onClick={handleDownLoadClick}>
+              download
+            </button>
+          </div>
+          <div className='text-sm'>
+            <h1 className='font-bold text-base border-b w-fit p-0 mb-2'>
+              Model Details :{' '}
+            </h1>
+            <div>
+              <p className='font-semibold'>
+                Class :{' '}
+                <span className='font-normal capitalize'>
+                  {currentModelData.Class}
+                </span>
+              </p>
+              <p className='font-semibold'>
+                Subject :{' '}
+                <span className='font-normal capitalize'>
+                  {currentModelData.Subject}
+                </span>
+              </p>
+              <p className='font-semibold'>
+                Topic :{' '}
+                <span className='font-normal capitalize'>
+                  {currentModelData.Topic}
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </div>

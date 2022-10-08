@@ -1,20 +1,16 @@
 import React, { useRef } from 'react';
-
-const LoginModal = ({ setLoginModal, setUser }) => {
+const LoginModal = ({ setLoginModal, setUser, setLoginDetails }) => {
   const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   const userNameRef = useRef();
   const passwordRef = useRef();
 
   const handleFormSubmit = async (e) => {
-    console.log(userNameRef.current.value);
-    console.log(passwordRef.current.value);
     e.preventDefault();
     const req = await fetch(`${SERVER_URL}/login`, {
       mode: 'cors',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      // body: { username: 'testname', password: 'testPassword' },
       body: JSON.stringify({
         username: userNameRef.current.value,
         password: passwordRef.current.value,
@@ -24,12 +20,12 @@ const LoginModal = ({ setLoginModal, setUser }) => {
     if (data.error) {
       alert('invalid User');
     } else {
-      console.log(data);
       setUser(data);
       setLoginModal(false);
+      setLoginDetails(data);
     }
-    // setLoginModal(false)
   };
+
   return (
     <div className='position absolute w-screen h-screen grid place-items-center top-0 left-0 overlay'>
       <div className='w-2/6 p-4 flex flex-col items-center gap-2 bg-normal rounded'>
