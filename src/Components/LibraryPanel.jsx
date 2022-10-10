@@ -47,7 +47,7 @@ const LibraryPanel = () => {
         </div>
       </div>
       <div className='inner-container flex flex-col justify-between h-full md:flex-row bg-normal px-2 overflow-hidden'>
-        <LeftSection />
+        <LeftSection user={user} />
         <RightSection user={user} />
       </div>
       {loginModal && !loginDetails.username && (

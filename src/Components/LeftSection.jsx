@@ -2,7 +2,8 @@ import React from 'react';
 import CanvasWrapper from '../ThreeJS/CanvasWrapper';
 import { useModelStore } from '../Store/ModelStore';
 
-const LeftSection = () => {
+const LeftSection = ({ user }) => {
+  console.log(user);
   const currentModelData = useModelStore((state) => state.currentModelData);
   const currentModelUrl = useModelStore((state) => state.currentModelUrl);
   //   console.log('here');

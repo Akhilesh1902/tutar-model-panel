@@ -8,10 +8,27 @@ const RightSection = ({ user }) => {
     useModelStore((state) => state);
 
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const fetchData = async () => {
     const filterdData = await fetch(`${SERVER_URL}/model-metadata`);
     const json = await filterdData.json();
-    setData(json);
+    console.log(json);
+    setData(
+      json.map((item) => {
+        return {
+          ...item,
+          DisplayName: item.DisplayName ? item.DisplayName.toLowerCase() : '',
+        };
+      })
+    );
+    setFilteredData(
+      json.map((item) => {
+        return {
+          ...item,
+          DisplayName: item.DisplayName ? item.DisplayName.toLowerCase() : '',
+        };
+      })
+    );
     fetchAllTheModels(json);
   };
 
@@ -54,13 +71,30 @@ const RightSection = ({ user }) => {
     const url = URL.createObjectURL(blob);
     setCurentModelUrl(url);
   };
-
   return (
     <div className='rightSection mb-4'>
       <h2 className='font-bold text-xl mb-5'>More Library Models</h2>
+      <div className='flex w-full mb-5 gap-2'>
+        <input
+          type='text'
+          onChange={(e) => {
+            setFilteredData(
+              data.filter((elem) => {
+                // console.log(elem);
+                return elem.DisplayName?.includes(e.target.value);
+              })
+            );
+          }}
+          placeholder='Search'
+          className='rounded p-1 outline-none w-4/5 bg-darkGray text-white placeholder:text-white'
+        />
+        <button className='w-max'>
+          <img src='/search.svg' alt='' />
+        </button>
+      </div>
       {user.username ? (
-        <div className='flex md:grid h-3/5 grid-cols-2 gap-2 overflow-scroll w-full'>
-          {data.map((item, i) => {
+        <div className='flex md:grid h-3/5 grid-cols-2 gap-2 overflow-y-scroll w-full'>
+          {filteredData.map((item, i) => {
             return (
               <img
                 key={i}
