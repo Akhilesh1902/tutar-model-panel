@@ -26,7 +26,7 @@ const LeftSection = ({ user }) => {
     const data = await result.json();
     console.log(data);
 
-    return;
+    // return;
     const a = document.createElement('a');
     a.style.display = 'none';
     a.href = currentModelUrl;
