@@ -4,6 +4,7 @@ import RightSection from './RightSection';
 import LoginModal from './LoginModal';
 import useLogin from '../Hooks/useLogin';
 import { useModelStore } from '../Store/ModelStore';
+import Buttons from './Layout/Buttons';
 
 const LibraryPanel = () => {
   const [loginModal, setLoginModal] = useState(false);
@@ -39,11 +40,11 @@ const LibraryPanel = () => {
               {user.username ? user.username : null}
             </p>
           ) : null}
-          <button
-            className='bg-darkGray py-1 px-2 rounded'
-            onClick={handleLoginClick}>
-            {user.username ? 'Log out' : 'Login'}
-          </button>
+          <Buttons
+            clickHandler={handleLoginClick}
+            value={user.username ? 'Logout' : 'Login'}
+            bgColor={user.username ? 'red' : 'green'}
+          />
         </div>
       </div>
       <div className='inner-container flex flex-col justify-between h-full md:flex-row bg-normal px-2 overflow-hidden'>

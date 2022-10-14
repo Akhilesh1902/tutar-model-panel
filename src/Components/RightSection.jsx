@@ -33,6 +33,7 @@ const RightSection = ({ user }) => {
   };
 
   const fetchAllTheModels = async (json) => {
+    return;
     await json.forEach(async (data) => {
       // console.log(data);
       if (model[data.name]) {
@@ -93,19 +94,29 @@ const RightSection = ({ user }) => {
         </button>
       </div>
       {user.username ? (
-        <div className='flex md:grid h-3/5 grid-cols-2 gap-2 overflow-y-scroll w-full'>
-          {filteredData.map((item, i) => {
-            return (
-              <img
-                key={i}
-                className='object-contain w-28 md:h-24 bg-gray-400 rounded bg-lightGray'
-                src={`data:image/jpeg;base64,${item.thumb}`}
-                alt={item.name}
-                onClick={handleThumbClick}
-              />
-            );
-          })}
-        </div>
+        <>
+          {!filteredData.length ? (
+            <p>No such model in our database</p>
+          ) : (
+            <div className='flex md:grid h-3/5 grid-cols-2 gap-2 overflow-y-scroll w-full'>
+              {filteredData.length ? (
+                filteredData.map((item, i) => {
+                  return (
+                    <img
+                      key={i}
+                      className='object-contain w-28 md:h-24 bg-gray-400 rounded bg-lightGray'
+                      src={`data:image/jpeg;base64,${item.thumb}`}
+                      alt={item.name}
+                      onClick={handleThumbClick}
+                    />
+                  );
+                })
+              ) : (
+                <p>No such models in our database</p>
+              )}
+            </div>
+          )}
+        </>
       ) : (
         <div className='w-full mb-10'>
           <p className='w-full'>Login to View Model</p>

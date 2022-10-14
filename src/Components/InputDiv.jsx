@@ -18,6 +18,7 @@ const InputDiv = ({ label, type, placeholder, ref }) => {
           name={label}
           placeholder={placeholder}
           className=' outline-0 bg-white'
+          required
         />
         {type === 'password' && (
           <button

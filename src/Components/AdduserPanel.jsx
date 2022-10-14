@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import InputDiv from '../Components/InputDiv';
+import Buttons from './Layout/Buttons';
 
-const AddUserPage = () => {
+const AdduserPanel = () => {
   const formRef = useRef();
 
   const handleFormSubmit = async (e) => {
@@ -41,12 +42,10 @@ const AddUserPage = () => {
         <InputDiv type={'text'} label='username' placeholder={'Sanjay'} />
         <InputDiv type={'password'} label='password' placeholder={'********'} />
         <InputDiv type={'text'} label='role' placeholder={'Student'} />
-        <button type='submit' className='bg-green w-fit my-3 px-3 py-1 rounded'>
-          Submit
-        </button>
+        <Buttons value={'Submit'} bgColor={'green'} valueColor={'lightGray'} />
       </form>
     </div>
   );
 };
 
-export default AddUserPage;
+export default AdduserPanel;
