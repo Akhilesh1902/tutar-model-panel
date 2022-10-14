@@ -7,26 +7,32 @@ const LeftSection = ({ user }) => {
   const currentModelData = useModelStore((state) => state.currentModelData);
   const currentModelUrl = useModelStore((state) => state.currentModelUrl);
   //   console.log('here');
-  console.log(currentModelData);
   const handleDownLoadClick = async () => {
-    const result = await fetch(
-      process.env.REACT_APP_SERVER_URL + '/reqdownload',
-      {
-        mode: 'cors',
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: currentModelData.name,
-          DisplayName: currentModelData.DisplayName,
-          username: user.username,
-        }),
-      }
-    );
+    console.log(currentModelData);
+    console.log(user);
 
-    const data = await result.json();
-    console.log(data);
+    if (!user.approvedModels.includes(currentModelData.name)) {
+      console.log('not allowed to download');
+      const result = await fetch(
+        process.env.REACT_APP_SERVER_URL + '/reqdownload',
+        {
+          mode: 'cors',
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: currentModelData.name,
+            DisplayName: currentModelData.DisplayName,
+            username: user.username,
+          }),
+        }
+      );
 
-    // return;
+      const data = await result.json();
+      console.log(data);
+      alert(data.message);
+
+      return;
+    }
     const a = document.createElement('a');
     a.style.display = 'none';
     a.href = currentModelUrl;

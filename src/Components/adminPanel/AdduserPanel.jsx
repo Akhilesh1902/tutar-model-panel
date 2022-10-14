@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import InputDiv from '../Components/InputDiv';
-import Buttons from './Layout/Buttons';
+import InputDiv from '../InputDiv';
+import Buttons from '../Layout/Buttons';
 
 const AdduserPanel = () => {
   const formRef = useRef();

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import AdduserPanel from '../Components/AdduserPanel';
-import { ApproveModelPanel } from '../Components/ApproveModelPanel';
+import AdduserPanel from '../Components/adminPanel/AdduserPanel';
+// import { ApproveModelPanel } from '../Components/ApproveModelPanel';
+import { ApproveModelPanel } from '../Components/adminPanel/ApproveModelPanel';
 import Buttons from '../Components/Layout/Buttons';
 import FlexCol from '../Components/Layout/FlexCol';
 import Header from '../Components/Layout/Header';
@@ -19,7 +20,9 @@ const Admin = ({ user, handleLoginClick }) => {
           handleLoginClick={handleLoginClick}
         />
         <div className='flex justify-between w-full gap-4 h-full'>
-          <Section flexPercent={30} className='bg-darkGray pt-2 h-full'>
+          <Section
+            flexPercent={30}
+            className='bg-darkGray pt-2 h-full max-w-xs'>
             <FlexCol>
               {/* <p className='mb-4'>Choose Options</p> */}
               <Buttons
@@ -39,6 +42,8 @@ const Admin = ({ user, handleLoginClick }) => {
           <Section>
             {!user.username ? (
               <p>Login to access</p>
+            ) : user.role?.toLowerCase() !== 'admin' ? (
+              <p>You are not Admin</p>
             ) : (
               <>
                 {currentPanel === 'addUser' && <AdduserPanel />}
