@@ -16,18 +16,36 @@ const Pages = () => {
     (state) => state.setCurrentModelData
   );
 
-  const [loginDetails, setLoginDetails] = useLogin(
+  const [loginDetails, setLoginDetails, fetchUser] = useLogin(
     'tutar-panel-login-details',
     { username: undefined, password: undefined }
   );
 
-  const handleLoginClick = () => {
+  // const handleLoginClick = () => {
+  //   if (user.username) {
+  //     setUser({});
+  //     setCurentModelUrl('');
+  //     setCurrentModelData({});
+  //   } else {
+  //     if (loginDetails.username) setUser(loginDetails);
+  //     setLoginModal(true);
+  //   }
+  // };
+
+  const handleLoginClick = async () => {
     if (user.username) {
       setUser({});
       setCurentModelUrl('');
       setCurrentModelData({});
     } else {
-      if (loginDetails.username) setUser(loginDetails);
+      if (loginDetails.username) {
+        const data = await fetchUser(
+          loginDetails.username,
+          loginDetails.password
+        );
+        setUser(data);
+        return;
+      }
       setLoginModal(true);
     }
   };
@@ -35,7 +53,12 @@ const Pages = () => {
   return (
     <>
       <Routes>
-        <Route path='/' element={<LibraryPanel />} />
+        <Route
+          path='/'
+          element={
+            <LibraryPanel handleLoginClick={handleLoginClick} user={user} />
+          }
+        />
         <Route path='/adduser' element={<AddUserPage />} />
         <Route
           path='/admin'

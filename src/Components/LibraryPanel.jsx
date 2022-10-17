@@ -1,35 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LeftSection from './LeftSection';
 import RightSection from './RightSection';
-import LoginModal from './LoginModal';
-import useLogin from '../Hooks/useLogin';
-import { useModelStore } from '../Store/ModelStore';
 import Buttons from './Layout/Buttons';
 
-const LibraryPanel = () => {
-  const [loginModal, setLoginModal] = useState(false);
-  const [user, setUser] = useState({});
-  const setCurentModelUrl = useModelStore((state) => state.setCurentModelUrl);
-  const setCurrentModelData = useModelStore(
-    (state) => state.setCurrentModelData
-  );
-
-  const [loginDetails, setLoginDetails] = useLogin(
-    'tutar-panel-login-details',
-    { username: undefined, password: undefined }
-  );
-
-  const handleLoginClick = () => {
-    if (user.username) {
-      setUser({});
-      setCurentModelUrl('');
-      setCurrentModelData({});
-    } else {
-      if (loginDetails.username) setUser(loginDetails);
-      setLoginModal(true);
-    }
-  };
-
+const LibraryPanel = ({ handleLoginClick, user }) => {
   return (
     <div className='w-full flex flex-col  mx-3'>
       <div className='flex justify-between items-center'>
@@ -51,13 +25,6 @@ const LibraryPanel = () => {
         <LeftSection user={user} />
         <RightSection user={user} />
       </div>
-      {loginModal && !loginDetails.username && (
-        <LoginModal
-          setLoginModal={setLoginModal}
-          setUser={setUser}
-          setLoginDetails={setLoginDetails}
-        />
-      )}
     </div>
   );
 };

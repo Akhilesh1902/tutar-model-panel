@@ -1,28 +1,21 @@
 import React, { useRef } from 'react';
-const LoginModal = ({ setLoginModal, setUser, setLoginDetails }) => {
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
+const LoginModal = ({ setLoginModal, setUser, setLoginDetails, fetchUser }) => {
   const userNameRef = useRef();
   const passwordRef = useRef();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const req = await fetch(`${SERVER_URL}/login`, {
-      mode: 'cors',
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: userNameRef.current.value,
-        password: passwordRef.current.value,
-      }),
-    });
-    const data = await req.json();
+
+    const data = await fetchUser(
+      userNameRef.current.value,
+      passwordRef.current.value
+    );
     if (data.error) {
       alert('invalid User');
     } else {
       setUser(data);
       setLoginModal(false);
-      setLoginDetails(data);
+      setLoginDetails({ username: data.username, password: data.password });
     }
   };
 

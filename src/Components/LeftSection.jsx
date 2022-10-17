@@ -6,10 +6,12 @@ const LeftSection = ({ user }) => {
   console.log(user);
   const currentModelData = useModelStore((state) => state.currentModelData);
   const currentModelUrl = useModelStore((state) => state.currentModelUrl);
+  const modelStore = useModelStore((state) => state.model);
   //   console.log('here');
   const handleDownLoadClick = async () => {
     console.log(currentModelData);
     console.log(user);
+    // return;
 
     if (!user.approvedModels.includes(currentModelData.name)) {
       console.log('not allowed to download');
@@ -31,6 +33,10 @@ const LeftSection = ({ user }) => {
       console.log(data);
       alert(data.message);
 
+      return;
+    }
+    if (!modelStore[currentModelData.name]) {
+      alert('no model in store');
       return;
     }
     const a = document.createElement('a');

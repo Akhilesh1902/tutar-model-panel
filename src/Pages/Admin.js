@@ -9,6 +9,7 @@ import Header from '../Components/Layout/Header';
 import Section from '../Components/Layout/Section';
 
 const Admin = ({ user, handleLoginClick }) => {
+  console.log(user);
   const [currentPanel, setCurrentPanel] = useState('addUser');
 
   return (
