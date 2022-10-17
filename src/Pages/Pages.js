@@ -77,6 +77,7 @@ const Pages = () => {
           setLoginModal={setLoginModal}
           setUser={setUser}
           setLoginDetails={setLoginDetails}
+          fetchUser={fetchUser}
         />
       )}
     </>
