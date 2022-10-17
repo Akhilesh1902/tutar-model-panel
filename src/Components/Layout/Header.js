@@ -1,9 +1,11 @@
 import React from 'react';
 import Buttons from './Buttons';
 
-const Header = ({ title, user, handleLoginClick }) => {
+const Header = ({ title, user, handleLoginClick, className }) => {
+  console.log(user);
   return (
-    <div className='header flex justify-between items-center p-2 bg-darkGray'>
+    <div
+      className={`header flex justify-between items-center p-2 bg-darkGray ${className}`}>
       <p className='capitalize font-bold'>{title}</p>
       <div className='flex gap-3 items-center'>
         <p className='capitalize'>

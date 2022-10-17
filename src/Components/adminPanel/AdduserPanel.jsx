@@ -41,7 +41,14 @@ const AdduserPanel = () => {
         className='flex flex-col gap-2 items-center'>
         <InputDiv type={'text'} label='username' placeholder={'Sanjay'} />
         <InputDiv type={'password'} label='password' placeholder={'********'} />
-        <InputDiv type={'text'} label='role' placeholder={'Student'} />
+        <div className='flex flex-col w-full gap-1'>
+          <label htmlFor='role'> Role :</label>
+          <select className='outline-none p-2 self-start' name='role'>
+            <option value={'Admin'}>Admin</option>
+            <option value={'Developer'}>Developer</option>
+            <option value={'Viewer'}>Viewer</option>
+          </select>
+        </div>
         <Buttons value={'Submit'} bgColor={'green'} valueColor={'lightGray'} />
       </form>
     </div>

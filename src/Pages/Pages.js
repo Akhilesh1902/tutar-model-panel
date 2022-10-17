@@ -21,17 +21,6 @@ const Pages = () => {
     { username: undefined, password: undefined }
   );
 
-  // const handleLoginClick = () => {
-  //   if (user.username) {
-  //     setUser({});
-  //     setCurentModelUrl('');
-  //     setCurrentModelData({});
-  //   } else {
-  //     if (loginDetails.username) setUser(loginDetails);
-  //     setLoginModal(true);
-  //   }
-  // };
-
   const handleLoginClick = async () => {
     if (user.username) {
       setUser({});

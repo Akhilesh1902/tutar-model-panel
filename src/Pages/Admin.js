@@ -23,8 +23,8 @@ const Admin = ({ user, handleLoginClick }) => {
         <div className='flex justify-between w-full gap-4 h-full'>
           <Section
             flexPercent={30}
-            className='bg-darkGray pt-2 h-full max-w-xs'>
-            <FlexCol>
+            className='bg-darkGray pt-2 h-full max-w-xs !w-fit'>
+            <FlexCol className='px-3'>
               {/* <p className='mb-4'>Choose Options</p> */}
               <Buttons
                 value={'add user'}

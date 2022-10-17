@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Buttons = ({
-  key,
+  Key,
   clickHandler,
   value,
   bgColor,
@@ -12,13 +12,13 @@ const Buttons = ({
   // console.log(valueColor);
   return (
     <motion.button
-      key={key}
-      whileHover={{ scale: 1.1, backgroundColor: '#63cfc6' }}
+      key={Key}
+      whileHover={{ scale: 1.1 }}
       onClick={clickHandler}
       className={
         `px-2 py-1 rounded capitalize bg-${bgColor || 'none'} text-${
           valueColor || 'dark-gray'
-        } ` + className
+        } hover:bg-blue ` + className
       }>
       {value}
     </motion.button>

@@ -9,11 +9,10 @@ const LeftSection = ({ user }) => {
   const modelStore = useModelStore((state) => state.model);
   //   console.log('here');
   const handleDownLoadClick = async () => {
-    console.log(currentModelData);
-    console.log(user);
-    // return;
-
-    if (!user.approvedModels.includes(currentModelData.name)) {
+    if (
+      user.role === 'Developer' &&
+      !user.approvedModels.includes(currentModelData.name)
+    ) {
       console.log('not allowed to download');
       const result = await fetch(
         process.env.REACT_APP_SERVER_URL + '/reqdownload',
@@ -59,9 +58,11 @@ const LeftSection = ({ user }) => {
             <p className='capitalize font-bold text-xl'>
               {currentModelData?.DisplayName}
             </p>
-            <button className='text-sm' onClick={handleDownLoadClick}>
-              download
-            </button>
+            {user.role === 'Viewer' ? null : (
+              <button className='text-sm' onClick={handleDownLoadClick}>
+                download
+              </button>
+            )}
           </div>
           <div className='text-sm'>
             <h1 className='font-bold text-base border-b w-fit p-0 mb-2'>

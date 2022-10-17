@@ -36,8 +36,8 @@ export const ApproveModelPanel = () => {
 
   const updateDownload = async () => {
     const userData = activeUser;
-    console.log(delete userData._id);
-    // console.log(userData);
+    delete userData._id;
+    console.log(userData);
     // return;
     const res = await fetch(process.env.REACT_APP_SERVER_URL + '/adduser', {
       method: 'POST',
@@ -47,6 +47,7 @@ export const ApproveModelPanel = () => {
     });
     const data = await res.json();
     console.log(data);
+    if (data.acknowledged) alert('updated the user');
     fetchAllUser();
   };
 
@@ -60,7 +61,7 @@ export const ApproveModelPanel = () => {
           <FlexCol>
             {userData.map((item, _id) => (
               <Buttons
-                key={item._id}
+                Key={item._id}
                 value={item.username}
                 valueColor={'red'}
                 clickHandler={updateUser}
