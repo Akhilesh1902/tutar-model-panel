@@ -8,8 +8,10 @@ const AdduserPanel = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const formElements = formRef.current.elements;
+    console.log(formElements);
     const formObj = {
       username: formElements['username'].value,
+      email: formElements['e-mail'].value,
       password: formElements['password'].value,
       role: formElements['role'].value,
       requestedModels: [],
@@ -40,6 +42,11 @@ const AdduserPanel = () => {
         onSubmit={handleFormSubmit}
         className='flex flex-col gap-2 items-center'>
         <InputDiv type={'text'} label='username' placeholder={'Sanjay'} />
+        <InputDiv
+          type={'text'}
+          label='e-mail'
+          placeholder={'sanjay@gmail.com'}
+        />
         <InputDiv type={'password'} label='password' placeholder={'********'} />
         <div className='flex flex-col w-full gap-1'>
           <label htmlFor='role'> Role :</label>
