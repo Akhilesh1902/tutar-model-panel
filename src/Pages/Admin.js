@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import AddModelPanel from '../Components/adminPanel/AddModelPanel';
 import AdduserPanel from '../Components/adminPanel/AdduserPanel';
 // import { ApproveModelPanel } from '../Components/ApproveModelPanel';
 import { ApproveModelPanel } from '../Components/adminPanel/ApproveModelPanel';
@@ -38,6 +39,12 @@ const Admin = ({ user, handleLoginClick }) => {
                   setCurrentPanel('approveModel');
                 }}
               />
+              <Buttons
+                value={'Add Model'}
+                clickHandler={() => {
+                  setCurrentPanel('addModel');
+                }}
+              />
             </FlexCol>
           </Section>
           <Section>
@@ -49,6 +56,7 @@ const Admin = ({ user, handleLoginClick }) => {
               <>
                 {currentPanel === 'addUser' && <AdduserPanel />}
                 {currentPanel === 'approveModel' && <ApproveModelPanel />}
+                {currentPanel === 'addModel' && <AddModelPanel />}
               </>
             )}
           </Section>

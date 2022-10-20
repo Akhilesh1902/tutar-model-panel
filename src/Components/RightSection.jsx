@@ -33,6 +33,7 @@ const RightSection = ({ user }) => {
   };
 
   const fetchAllTheModels = async (json) => {
+    console.log(json);
     // return;
     await json.forEach(async (data) => {
       // console.log(data);
@@ -41,7 +42,7 @@ const RightSection = ({ user }) => {
       }
       const result = await fetch(`${SERVER_URL}/models/${data.name}`);
       const json = await result.json();
-      // console.log(json);
+      console.log(json);
       pushModel({
         name: json.modelName,
         blob: json.model.data,
