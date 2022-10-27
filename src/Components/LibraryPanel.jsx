@@ -10,7 +10,7 @@ const LibraryPanel = ({ handleLoginClick, user }) => {
         title={'Tutar Library Panel'}
         handleLoginClick={handleLoginClick}
         user={user}
-        className={'p-0 !bg-lightGray'}
+        className={'p-2 !bg-lightGray'}
       />
       <div className='inner-container flex flex-col justify-between h-full md:flex-row bg-normal px-2 overflow-hidden'>
         <LeftSection user={user} />

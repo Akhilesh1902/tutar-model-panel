@@ -23,7 +23,7 @@ const Admin = ({ user, handleLoginClick }) => {
         />
         <div className='flex justify-between w-full gap-4 h-full'>
           <Section
-            flexPercent={30}
+            flexPercent={1}
             className='bg-darkGray pt-2 h-full max-w-xs !w-fit'>
             <FlexCol className='px-3'>
               {/* <p className='mb-4'>Choose Options</p> */}
@@ -47,7 +47,7 @@ const Admin = ({ user, handleLoginClick }) => {
               />
             </FlexCol>
           </Section>
-          <Section>
+          <Section flexPercent={6}>
             {!user.username ? (
               <p>Login to access</p>
             ) : user.role?.toLowerCase() !== 'admin' ? (

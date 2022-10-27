@@ -39,10 +39,10 @@ const AddModelPanel = () => {
 
     const dataToSend = {
       ...modelData,
-      Classes: Classes.value,
+      Class: Classes.value,
       DisplayName: DisplayName.value,
       Scale: Scale.value,
-      Subjects: Subjects.value,
+      Subject: Subjects.value,
       Topic: Topic.value,
     };
 
@@ -100,7 +100,7 @@ const AddModelPanel = () => {
           </Section>
           <Section>
             <FlexCol className={'!items-start'}>
-              <h1 className='underline text-lg'>Model Data :</h1>
+              <h1 className='text-lg underline'>Model Data :</h1>
               <InputDiv label={'DisplayName'} />
               <OptionsContainer arr={AllClasses} label={'Classes'} />
               <OptionsContainer arr={AllSubjects} label={'Subjects'} />
@@ -128,7 +128,7 @@ const OptionsContainer = ({ label, arr }) => {
   return (
     <FlexCol className={'!items-start gap-0'}>
       <label htmlFor={label}>{label} :</label>
-      <select name={label} className='outline-none p-2 self-start'>
+      <select name={label} className='self-start p-2 outline-none'>
         {arr.map((item) => (
           <option value={item} key={item}>
             {item}
