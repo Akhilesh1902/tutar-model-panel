@@ -51,7 +51,7 @@ const RightSection = ({ user }) => {
 
   const fetchAllTheModels = async (json) => {
     console.log(json);
-    return;
+    // return;
     await json.forEach(async (data) => {
       // console.log(data);
       if (model[data.name]) {
